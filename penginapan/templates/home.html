@@ -1,0 +1,295 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Hero Section -->
+<section id="home" class="hero fade-in">
+    <div class="hero-bg" style="background-image: url('https://images.unsplash.com/photo-1589802829985-817e51171b92?auto=format&fit=crop&q=80&w=2000');"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h1 class="hero-title reveal-text">Dekat dengan Alam</h1>
+        <p class="hero-subtitle reveal-text delay-1">Temukan kedamaian sejati di Griya Rimba, di mana kemewahan bertemu dengan keasrian hutan yang menenangkan jiwa.</p>
+        <div class="reveal-text delay-2">
+            <a href="#booking" class="btn-primary-large">Jelajahi Keindahan</a>
+        </div>
+    </div>
+    <div class="scroll-indicator">
+        <div class="mouse"></div>
+        <span>Scroll</span>
+    </div>
+</section>
+
+<!-- Stats Counter Section -->
+<section class="stats-section">
+    <div class="stats-grid stagger-children">
+        <div class="stat-item">
+            <div class="stat-number" data-target="50" data-suffix="+">0</div>
+            <div class="stat-label">Luxury Suites</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number" data-target="4" data-suffix=".9">0</div>
+            <div class="stat-label">Guest Rating</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number" data-target="1000" data-suffix="+">0</div>
+            <div class="stat-label">Happy Guests</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number" data-target="15" data-suffix="">0</div>
+            <div class="stat-label">Acre Forest</div>
+        </div>
+    </div>
+</section>
+
+<!-- Introduction / About Section -->
+<section class="section-container about-section">
+    <div class="about-grid container">
+        <div class="about-text slide-up">
+            <h2 class="section-title">Selaras dengan Rimbunnya Hutan</h2>
+            <div class="divider"></div>
+            <p>Di Griya Rimba, kami percaya bahwa kemewahan sejati adalah ketika kita bisa bernapas lega di tengah pepohonan. Setiap sudut penginapan kami dirancang untuk meminimalkan jejak karbon sambil memaksimalkan kenyamanan Anda.</p>
+            <p>Bangunan kami menggunakan material kayu berkelanjutan yang menyatu sempurna dengan lanskap asli.</p>
+        </div>
+        <div class="about-image-wrapper slide-up">
+            <div class="image-accent"></div>
+            <img src="https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?auto=format&fit=crop&q=80&w=1000" alt="Nature Elegance" class="about-image">
+        </div>
+    </div>
+</section>
+
+<!-- Suites Section -->
+<section id="suites" class="section-container suites-section">
+    <div class="container text-center slide-up">
+        <h2 class="section-title">Griya Bertema Alam</h2>
+        <div class="divider center"></div>
+        <p class="section-subtitle">Istirahat dalam pelukan alam. Pemandangan hutan yang luas, furnitur kayu buatan tangan, dan udara yang murni.</p>
+    </div>
+
+    <div class="suites-grid container">
+        {% for room in rooms %}
+        <div class="suite-card slide-up delay-{{ forloop.counter }}">
+            <div class="suite-img-wrapper">
+                {% if room.image %}
+                    <img src="{{ room.image.url }}" alt="{{ room.name }}">
+                {% else %}
+                    <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&q=80&w=1000" alt="{{ room.name }}">
+                {% endif %}
+                <div class="suite-price">Rp {{ room.price|floatformat:0 }}</div>
+                
+                {% if room.is_occupied %}
+                <div class="status-badge occupied">Terpakai</div>
+                {% else %}
+                <div class="status-badge available">Tersedia</div>
+                {% endif %}
+            </div>
+            <div class="suite-info">
+                <h3>{{ room.name }}</h3>
+                <p>{{ room.description }}</p>
+                <div class="suite-features">
+                    <span><i class="icon">🌿</i> Eco-Friendly</span>
+                    <span><i class="icon">📐</i> Room Suite</span>
+                    <span><i class="icon">🌅</i> Forest View</span>
+                </div>
+                <a href="#booking" class="btn-outline">Pesan Sekarang</a>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center">Belum ada kamar yang tersedia saat ini.</p>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Amenities Section -->
+<section id="amenities" class="section-container amenities-section dark-bg">
+    <div class="container text-center slide-up">
+        <h2 class="section-title">World-Class Facilities</h2>
+        <div class="divider center"></div>
+    </div>
+
+    <div class="amenities-grid container">
+        <div class="amenity-item slide-up">
+            <div class="amenity-icon">🧗‍♂️</div>
+            <h3>Wisata Alam</h3>
+            <p>Pemandu profesional yang akan membawa Anda menjelajahi jalan-jalan rahasia di dalam hutan.</p>
+        </div>
+        <div class="amenity-item slide-up delay-1">
+            <div class="amenity-icon">🥗</div>
+            <h3>Hidangan Organik</h3>
+            <p>Bahan makanan segar yang diambil langsung dari kebun organik kami di dalam area penginapan.</p>
+        </div>
+        <div class="amenity-item slide-up delay-2">
+            <div class="amenity-icon">🍃</div>
+            <h3>Terapi Rimbun</h3>
+            <p>Perawatan spa eksklusif menggunakan minyak atsiri dari tanaman hutan asli.</p>
+        </div>
+        <div class="amenity-item slide-up delay-3">
+            <div class="amenity-icon">🔥</div>
+            <h3>Api Unggun Senja</h3>
+            <p>Malam yang hangat di bawah bintang-bintang dengan musik akustik yang menenangkan.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials-section">
+    <div class="container text-center slide-up">
+        <h2 class="section-title">Apa Kata Tamu Kami</h2>
+        <div class="divider center"></div>
+        <p class="section-subtitle">Cerita nyata dari mereka yang telah merasakan kedamaian Griya Rimba.</p>
+    </div>
+
+    <div class="container">
+        <div class="testimonial-grid">
+            <div class="testimonial-card slide-up">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"Pengalaman yang luar biasa! Bangun pagi dengan suara burung dan pemandangan hutan yang hijau. Ini adalah definisi kemewahan yang sesungguhnya."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">A</div>
+                    <div>
+                        <div class="testimonial-name">Anindya Putri</div>
+                        <div class="testimonial-role">Travel Blogger</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card slide-up delay-1">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"Kami merayakan anniversary di sini dan itu sempurna. Api unggun di malam hari, spa di pagi hari. Griya Rimba adalah surga tersembunyi."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">R</div>
+                    <div>
+                        <div class="testimonial-name">Raka & Sari</div>
+                        <div class="testimonial-role">Honeymoon Guests</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card slide-up delay-2">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"Sebagai pecinta alam, saya sangat mengapresiasi konsep eco-friendly mereka. Nyaman, mewah, tapi tetap ramah lingkungan."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">D</div>
+                    <div>
+                        <div class="testimonial-name">Dimas Prasetyo</div>
+                        <div class="testimonial-role">Nature Enthusiast</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Banner -->
+<section class="cta-banner">
+    <h2>Siap Merasakan Kedamaian?</h2>
+    <p>Pesan sekarang dan dapatkan pengalaman menginap eksklusif di tengah hutan tropis.</p>
+    <a href="#booking" class="btn-outline">Reservasi Sekarang</a>
+</section>
+
+<!-- Quick Booking Form / Call to action -->
+<section id="booking" class="section-container booking-section">
+    <div class="container slide-up">
+        <div class="booking-card glass-panel">
+            <div class="booking-header">
+                <h2>Rencanakan Kunjungan Anda</h2>
+                <p>Mulai perjalanan Anda menuju ketenangan yang hakiki.</p>
+            </div>
+            <form action="{% url 'book_room' %}" method="POST" class="booking-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label>Nama Lengkap</label>
+                    <input type="text" name="guest_name" class="form-control" placeholder="Masukkan nama Anda" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="guest_email" class="form-control" placeholder="email@contoh.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Pilih Kamar</label>
+                    <select name="room_id" class="form-control" required>
+                        <option value="" disabled selected>Pilih Kamar...</option>
+                        {% for room in rooms %}
+                        <option value="{{ room.id }}">{{ room.name }} - Rp {{ room.price|floatformat:0 }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Tanggal Check In</label>
+                    <input type="date" name="check_in" id="check_in" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Tanggal Check Out</label>
+                    <input type="date" name="check_out" id="check_out" class="form-control" required>
+                </div>
+                <button type="submit" class="btn-primary-large submit-btn">Konfirmasi Pemesanan</button>
+            </form>
+
+            <script>
+                const today = new Date().toISOString().split('T')[0];
+                document.getElementById('check_in').setAttribute('min', today);
+                document.getElementById('check_out').setAttribute('min', today);
+                
+                document.getElementById('check_in').addEventListener('change', function() {
+                    document.getElementById('check_out').setAttribute('min', this.value);
+                });
+            </script>
+        </div>
+    </div>
+</section>
+
+<!-- Manage Booking Section -->
+<section id="manage" class="section-container manage-section dark-bg">
+    <div class="container slide-up">
+        <div class="text-center">
+            <h2 class="section-title">Kelola Reservasi Anda</h2>
+            <div class="divider center"></div>
+            <p class="section-subtitle">Masukkan email Anda untuk menemukan dan mengelola status kunjungan Anda.</p>
+        </div>
+        
+        <div class="manage-box glass-panel">
+            <form action="/#manage" method="GET" class="search-form">
+                <input type="email" name="email" value="{{ email_query }}" placeholder="email@contoh.com" class="form-control">
+                <button type="submit" class="btn-primary">Cari Pesanan</button>
+                <a href="/#manage" class="btn-outline">Tampilkan Semua</a>
+            </form>
+
+            <div class="results-container">
+                {% if my_bookings %}
+                    {% if email_query %}
+                        <h3 class="results-title">Hasil untuk: {{ email_query }}</h3>
+                    {% else %}
+                        <h3 class="results-title">Daftar Semua Pesanan Aktif</h3>
+                    {% endif %}
+                    
+                    <div class="booking-list">
+                        {% for booking in my_bookings %}
+                        <div class="booking-item card">
+                            <div class="booking-details">
+                                <h4>{{ booking.room.name }}</h4>
+                                <p>Tamu: {{ booking.guest_name }}</p>
+                                <p>Periode: {{ booking.check_in }} - {{ booking.check_out }}</p>
+                                <div class="status-indicator {{ booking.status|lower }}">
+                                    {{ booking.get_status_display }}
+                                </div>
+                            </div>
+                            <div class="booking-actions">
+                                {% if booking.status == 'BOOKED' %}
+                                    <a href="{% url 'check_in_booking' booking.id %}?email={{ email_query }}" class="btn-primary">Check-In</a>
+                                {% elif booking.status == 'CHECKED_IN' %}
+                                    <a href="{% url 'check_out_booking' booking.id %}?email={{ email_query }}" class="btn-outline">Selesai / Check-Out</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {% if email_query %}
+                        <p class="no-results">Tidak ada pesanan aktif ditemukan untuk email ini.</p>
+                    {% else %}
+                        <p class="no-results">Belum ada pesanan aktif saat ini.</p>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
